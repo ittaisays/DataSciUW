@@ -2,7 +2,7 @@ import sys
 import json
 
 def getSentiment(tweetText,sentDict):
-    textList=tweetText.split()
+    textList=tweetText.lower().split()
     value=0    
     for item in textList:
        if item in sentDict:
@@ -21,11 +21,11 @@ def main():
     for line in tweet_file:
         allTweets.append(json.loads(line))
 #
-#    englishTweets=[]
-#    for i in range(len(allTweets)):
-#        if allTweets[i].get('lang','no')=='en':
-#            englishTweets.append(allTweets[i])
-#
+    englishTweets=[]
+    for i in range(len(allTweets)):
+        if allTweets[i].get('lang','no')=='en':
+            englishTweets.append(allTweets[i])
+
     for tweet in allTweets:
         print getSentiment(tweet.get('text',"0"),scores)
 
